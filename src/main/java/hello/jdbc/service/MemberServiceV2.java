@@ -32,7 +32,6 @@ public class MemberServiceV2 {
         } finally {
             release(con);
         }
-
     }
 
     private void bizLogic(Connection con, String fromId, String toId, int money) throws SQLException {
@@ -53,7 +52,7 @@ public class MemberServiceV2 {
     private void release(Connection con) {
         if (con != null) {
             try {
-                con.setAutoCommit(true); // 커넥션 풀 고려
+                con.setAutoCommit(true); // 커넥션 풀 고려(디폴트 값이 AutoCommit True)
                 con.close();
             } catch (Exception e) {
                 log.info("error", e);
