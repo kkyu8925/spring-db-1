@@ -39,7 +39,6 @@ public class MemberRepositoryV2 {
         } finally {
             close(con, pstmt, null);
         }
-
     }
 
     public Member findById(String memberId) throws SQLException {
@@ -70,7 +69,6 @@ public class MemberRepositoryV2 {
         } finally {
             close(con, pstmt, rs);
         }
-
     }
 
     public Member findById(Connection con, String memberId) throws SQLException {
@@ -100,8 +98,11 @@ public class MemberRepositoryV2 {
             // connection은 여기서 닫지 않는다.
             JdbcUtils.closeResultSet(rs);
             JdbcUtils.closeStatement(pstmt);
-        }
 
+//            JdbcUtils.closeResultSet(rs);
+//            JdbcUtils.closeStatement(stmt);
+//            JdbcUtils.closeConnection(con);
+        }
     }
 
     public void update(Connection con, String memberId, int money) throws SQLException {
@@ -121,6 +122,10 @@ public class MemberRepositoryV2 {
         } finally {
             //connection은 여기서 닫지 않는다.
             JdbcUtils.closeStatement(pstmt);
+
+//            JdbcUtils.closeResultSet(rs);
+//            JdbcUtils.closeStatement(stmt);
+//            JdbcUtils.closeConnection(con);
         }
     }
 
@@ -141,7 +146,6 @@ public class MemberRepositoryV2 {
         } finally {
             close(con, pstmt, null);
         }
-
     }
 
     private void close(Connection con, Statement stmt, ResultSet rs) {
@@ -149,7 +153,6 @@ public class MemberRepositoryV2 {
         JdbcUtils.closeStatement(stmt);
         JdbcUtils.closeConnection(con);
     }
-
 
     private Connection getConnection() throws SQLException {
         Connection con = dataSource.getConnection();
